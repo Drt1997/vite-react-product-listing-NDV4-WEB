@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Sony WH-1000XM5 Headphones",
+    "image": "https://m.media-amazon.com/images/I/51pFYV7FHdL._UF350,350_QL80_.jpg",
+    "description": "Industry-leading noise canceling headphones with up to 30 hours of battery life.",
+    "price": 29999,
+    "category": "Electronics",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Nike Air Zoom Pegasus 40",
+    "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/f73d8888-7d7c-44e7-aa3d-c51414a9b8a2/NIKE+AIR+ZOOM+PEGASUS+40+%28GS%29.png",
+    "description": "Responsive and supportive running shoes ideal for daily training.",
+    "price": 8999,
+    "category": "Footwear",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "name": "The Psychology of Money",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0MtIdf-IzyV9aWNLq6vrcc-qfgn62tI9Fwg&s",
+    "description": "Timeless lessons on wealth, greed, and happiness by Morgan Housel.",
+    "price": 349,
+    "category": "Books",
+    "rating": 5
+  },
+  {
+    "id": 4,
+    "name": "Wooden Wall Clock",
+    "image": "https://m.media-amazon.com/images/I/61iGvcOiAhL._AC_UF350,350_QL50_.jpg",
+    "description": "Vintage-style silent wooden wall clock, perfect for living rooms and offices.",
+    "price": 1299,
+    "category": "Home Decor",
+    "rating": 4
+  },
+  {
+    "id": 5,
+    "name": "Levi's Men's Slim Jeans",
+    "image": "https://m.media-amazon.com/images/I/910bZel3N3L._SX466_.jpg",
+    "description": "Stretchable cotton slim fit jeans for casual and formal wear.",
+    "price": 2199,
+    "category": "Fashion",
+    "rating": 4
+  },
+  {
+    "id": 6,
+    "name": "Apple iPhone 14",
+    "image": "https://m.media-amazon.com/images/I/61cwywLZR-L._AC_SL1500_.jpg",
+    "description": "Apple iPhone 14 with A15 Bionic chip and dual-camera system.",
+    "price": 71999,
+    "category": "Electronics",
+    "rating": 5
+  },
+  {
+    "id": 7,
+    "name": "Adidas Women's Running T-shirt",
+    "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e1e9c58cf1c74652a2b45565ab658d76_9366/Run_It_Tee_Black_IL7227_HM1.jpg",
+    "description": "Breathable and lightweight sports t-shirt for workouts and training.",
+    "price": 1499,
+    "category": "Fashion",
+    "rating": 4
+  },
+  {
+    "id": 8,
+    "name": "Philips Table Lamp",
+    "image": "https://images-eu.ssl-images-amazon.com/images/I/41qo53WCkqL._AC_UL210_SR210,210_.jpg",
+    "description": "Energy-efficient LED lamp with adjustable brightness and angle.",
+    "price": 1799,
+    "category": "Home Decor",
+    "rating": 4
+  },
+  {
+    "id": 9,
+    "name": "Sparx Men's Sandals",
+    "image": "https://m.media-amazon.com/images/I/61rIqxt7xpL._UY1000_.jpg",
+    "description": "Comfortable and durable sandals suitable for daily wear.",
+    "price": 799,
+    "category": "Footwear",
+    "rating": 3
+  },
+  {
+    "id": 10,
+    "name": "Ikigai: The Japanese Secret to a Long and Happy Life",
+    "image": "https://m.media-amazon.com/images/I/81l3rZK4lnL._AC_UY436_FMwebp_QL65_.jpg",
+    "description": "A beautifully written book revealing the secrets of longevity and purpose.",
+    "price": 299,
+    "category": "Books",
+    "rating": 5
+  }
+]
